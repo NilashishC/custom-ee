@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: custom-ee-1
+  description: Demo
+  tags:
+    - execution-environment
+    - custom-ee
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: github.com/NilashishC/custom-ee
+spec:
+  type: ansible-execution-environment
+  owner: user:default/admin
+  lifecycle: production

@@ -1,0 +1,39 @@
+---
+version: 3
+
+images:
+  base_image:
+    name: 'registry.access.redhat.com/ubi9/python-311:latest'
+
+dependencies:
+  ansible_core:
+    package_pip: ansible-core
+  ansible_runner:
+    package_pip: ansible-runner
+  python:
+    - paramiko
+    - requests>2.1.0
+    - pydantic>=2.0.0
+  system:
+    - libssh-devel
+  galaxy:
+    collections:
+      - name: cisco.asa
+        version: 2.0.0
+      - name: ansible.posix
+      - name: community.general
+      - name: community.crypto
+      - name: cisco.nxos
+        version: 1.2.4
+      - name: cisco.ios
+        version: 2.0.0
+      - name: amazon.aws
+      - name: ansible.mcp_builder
+      - name: ansible.mcp
+
+additional_build_steps:
+  append_final:
+    - RUN whoami
+    - COPY --from=builder /opt/mcp /opt/mcp
+  append_builder:
+    - RUN ansible-playbook ansible.mcp_builder.install_mcp
