@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: custom-ee-2
+  description: Demp
+  tags:
+    - execution-environment
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: github.com/NilashishC/custom-ee
+spec:
+  type: ansible-execution-environment
+  owner: user:default/test_user_9a271ee3
+  lifecycle: production
